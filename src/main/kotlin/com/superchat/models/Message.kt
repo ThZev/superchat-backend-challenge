@@ -12,8 +12,8 @@ data class Message(
 ) {
     companion object {
 
-        fun getMessageList(messageEntityList: List<MessageEntity>): List<Message> {
-            return messageEntityList.map { Message of it }
+        fun getMessageList(messageEntityList: List<MessageEntity>): List<String> {
+            return messageEntityList.map { Message of it }.map { it.message }
         }
 
         infix fun of (messageEntity: MessageEntity): Message {

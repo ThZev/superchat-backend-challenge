@@ -16,7 +16,7 @@ data class Contact(
             return contactEntityList.map { Contact of it }
         }
 
-        infix fun of (contactEntity: ContactEntity): Contact {
+        private infix fun of (contactEntity: ContactEntity): Contact {
             return Contact(
                 name = contactEntity.name,
                 birth = contactEntity.birth,

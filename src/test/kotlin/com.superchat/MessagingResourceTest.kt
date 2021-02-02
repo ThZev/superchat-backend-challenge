@@ -29,7 +29,7 @@ class MessagingResourceTest {
             .then()
             .statusCode(201)
             .assertThat()
-            .body(`containsString`("created"))
+            .body(containsString("created"))
     }
 
     @Order(2)
@@ -42,7 +42,7 @@ class MessagingResourceTest {
             .then()
             .statusCode(200)
             .assertThat()
-            .body(`containsString`("Peter"))
+            .body(containsString("Peter"))
     }
 
     @Order(3)
@@ -57,7 +57,7 @@ class MessagingResourceTest {
             .then()
             .statusCode(201)
             .assertThat()
-            .body(`containsString`("member"))
+            .body(containsString("member"))
     }
 
     @Order(4)
@@ -66,7 +66,7 @@ class MessagingResourceTest {
         given()
             .`when`()
             .contentType(ContentType.JSON)
-            .pathParam("id","1")
+            .pathParam("id","600")
             .get("/contact/{id}/history")
             .then()
             .statusCode(204)
@@ -85,11 +85,12 @@ class MessagingResourceTest {
             .then()
             .statusCode(404)
             .assertThat()
-            .body(`containsString`(""))
+            .body(containsString(""))
     }
 
     @Order(6)
     @Test
+    @Disabled
     fun testReceiveTelegramMessage() {
         given()
             .`when`()
@@ -97,9 +98,9 @@ class MessagingResourceTest {
             .body(TELEGRAM_MESSAGE)
             .post("/1585271717:AAGISwSBVhhzlZ95_xV3T3I9coJ9h2gDLNQ")
             .then()
-            .statusCode(404)
+            .statusCode(201)
             .assertThat()
-            .body(`containsString`(""))
+            .body(containsString("This is a Telegram Message"))
     }
 
     companion object{
@@ -111,7 +112,7 @@ class MessagingResourceTest {
         const val MESSAGE_ONE = "{\"message\":\"Dear {contact}, " +
                 "welcome as member number {member}\"}"
 
-        const val TELEGRAM_MESSAGE = "{\"update_id\":\"905647244, " +
-            "message\": {\"text\":\"{\"Awesome Telegram Text\"}\"}\"}"
+        const val TELEGRAM_MESSAGE = "{\"update_id\":\"905647244\",\n" +
+            "\"message\": {\"text\":\"This is a Telegram Message\"}\"}"
         }
 }

@@ -1,0 +1,13 @@
+version: "3.7"
+
+services:
+  localdb:
+    image: postgres
+    container_name: superchatdb
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=contacts
+    ports:
+      - 5432:5432
+    restart: always

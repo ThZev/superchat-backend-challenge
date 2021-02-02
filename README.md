@@ -1,23 +1,23 @@
 # backend-challenge project
 
-## Running the application in dev mode
+## Run application locally
+Build and deploy database:
+```shell script
+docker-compose -f src/main/docker/docker-compose-db.yml up -d
+```
 
-You can run your application in dev mode that enables live coding using:
+Run application in dev mode with hot code swap enabled:
 ```shell script
 ./gradlew quarkusDev
 ```
-## Running the applaction in docker 
-The application can be packaged using:
+## Run application in docker 
+Package application:
 ```shell script
-./gradlew build
+./gradlew build -Dquarkus.package.type=native -Dquarkus.native.container-build=true
 ```
-Then, build the image with:
+Build and deploy application with docker:
 ```shell script
-docker build -f src/main/docker/Dockerfile.jvm -t quarkus/backend-challenge-jvm .
-```
-Then run the container using:
-```shell script
- docker run -i --rm -p 8080:8080 quarkus/backend-challenge-jvm
+docker-compose up -d
 ```
 
 ## Postman

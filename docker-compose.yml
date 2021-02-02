@@ -1,0 +1,29 @@
+version: "3.7"
+
+services:
+  application:
+    build:
+      context: ./
+      dockerfile: src/main/docker/Dockerfile.native
+    container_name: superchat
+    environment:
+      - QUARKUS_DB_KIND=postgresql
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - QUARKUS_DATASOURCE_URL=jdbc:postgresql://superchatdb:5432/contacts
+    ports:
+      - 8080:8080
+    restart: always
+    depends_on:
+      - superchatdb
+
+  superchatdb:
+    image: postgres
+    container_name: superchatdb
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=contacts
+    ports:
+      - 5432:5432
+    restart: always

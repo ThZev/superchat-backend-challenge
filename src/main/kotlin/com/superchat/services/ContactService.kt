@@ -2,6 +2,7 @@ package com.superchat.services
 
 import com.superchat.util.ObjectMapperUtil
 import com.superchat.entities.ContactEntity
+import com.superchat.models.Contact
 import com.superchat.models.Message
 import com.superchat.util.MessagingUtil.sendHttpResponse
 import javax.enterprise.context.ApplicationScoped
@@ -24,7 +25,10 @@ class ContactService {
         if (contactEntityList.isNullOrEmpty()) {
             return sendHttpResponse(Response.Status.NO_CONTENT, "")
         }
-        return sendHttpResponse(Response.Status.OK, contactEntityList)
+        contactEntityList.let {
+            val contactList = Contact.getContactList(contactEntityList)
+            return sendHttpResponse(Response.Status.OK, contactList)
+        }
     }
 
     fun listMessagesWithContact(contactId: Long): Response {
@@ -34,7 +38,7 @@ class ContactService {
              return sendHttpResponse(Response.Status.NO_CONTENT, "")
         }
         messageEntityList.let {
-            val messageList = Message.getMessageList(messageEntityList).map { it.message }
+            val messageList = Message.getMessageList(messageEntityList)
             return sendHttpResponse(Response.Status.OK, messageList)
         }
     }

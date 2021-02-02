@@ -1,0 +1,255 @@
+{
+	"info": {
+		"_postman_id": "a6ad2dff-96f8-4d11-b011-e33cd3640083",
+		"name": "Superchat backend challenge",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Create new Contact",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"name\":\"Peter Maier\",\n\"birth\":\"04/03/1987\" ,\n\"email\":\"bernd.peter@gmail.com\",\n\"phone\":\"01523545445\"}"
+				},
+				"url": {
+					"raw": "http://0.0.0.0:8080/messaging/contact/create",
+					"protocol": "http",
+					"host": [
+						"0",
+						"0",
+						"0",
+						"0"
+					],
+					"port": "8080",
+					"path": [
+						"messaging",
+						"contact",
+						"create"
+					]
+				},
+				"description": "Create new Contact\n"
+			},
+			"response": []
+		},
+		{
+			"name": "List Contacts",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://0.0.0.0:8080/messaging/contact/list",
+					"protocol": "http",
+					"host": [
+						"0",
+						"0",
+						"0",
+						"0"
+					],
+					"port": "8080",
+					"path": [
+						"messaging",
+						"contact",
+						"list"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Send Message to Contact",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"message\":\"Dear {contact}, as member number {member}, will you take the chance of buying buybitcoin at a rate of {bitcoin}?\"}"
+				},
+				"url": {
+					"raw": "http://0.0.0.0:8080/messaging/contact/1/message",
+					"protocol": "http",
+					"host": [
+						"0",
+						"0",
+						"0",
+						"0"
+					],
+					"port": "8080",
+					"path": [
+						"messaging",
+						"contact",
+						"1",
+						"message"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get message history with contact",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://0.0.0.0:8080/messaging/contact/1/history",
+					"protocol": "http",
+					"host": [
+						"0",
+						"0",
+						"0",
+						"0"
+					],
+					"port": "8080",
+					"path": [
+						"messaging",
+						"contact",
+						"1",
+						"history"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Receive short Telegram Message",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": " {\n            \"update_id\": 905647244,\n            \"message\": {\n                \"message_id\": 2,\n                \"from\": {\n                    \"id\": 611492282,\n                    \"is_bot\": false,\n                    \"first_name\": \"Thiemo\",\n                    \"language_code\": \"de\"\n                },\n                \"chat\": {\n                    \"id\": 611492282,\n                    \"first_name\": \"Thiemo\",\n                    \"type\": \"private\"\n                },\n                \"date\": 1611530260,\n                \"text\": \"This is a Telegram message\"\n            }\n        }"
+				},
+				"url": {
+					"raw": "http://0.0.0.0:8080/:8080/messaging/1585271717:AAGISwSBVhhzlZ95_xV3T3I9coJ9h2gDLNQ",
+					"protocol": "http",
+					"host": [
+						"0",
+						"0",
+						"0",
+						"0"
+					],
+					"port": "8080",
+					"path": [
+						":8080",
+						"messaging",
+						"1585271717:AAGISwSBVhhzlZ95_xV3T3I9coJ9h2gDLNQ"
+					],
+					"variable": [
+						{
+							"key": "8080",
+							"value": ""
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Receive full Telegram Message",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": " {\n            \"update_id\": 905647244,\n            \"message\": {\n                \"message_id\": 2,\n                \"from\": {\n                    \"id\": 611492282,\n                    \"is_bot\": false,\n                    \"first_name\": \"Thiemo\",\n                    \"language_code\": \"de\"\n                },\n                \"chat\": {\n                    \"id\": 611492282,\n                    \"first_name\": \"Thiemo\",\n                    \"type\": \"private\"\n                },\n                \"date\": 1611530260,\n                \"text\": \"This is a Telegram message\"\n            }\n        }"
+				},
+				"url": {
+					"raw": "http://0.0.0.0:8080/:8080/messaging/1585271717:AAGISwSBVhhzlZ95_xV3T3I9coJ9h2gDLNQ",
+					"protocol": "http",
+					"host": [
+						"0",
+						"0",
+						"0",
+						"0"
+					],
+					"port": "8080",
+					"path": [
+						":8080",
+						"messaging",
+						"1585271717:AAGISwSBVhhzlZ95_xV3T3I9coJ9h2gDLNQ"
+					],
+					"variable": [
+						{
+							"key": "8080",
+							"value": ""
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Health Check",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://0.0.0.0:8080/health",
+					"protocol": "http",
+					"host": [
+						"0",
+						"0",
+						"0",
+						"0"
+					],
+					"port": "8080",
+					"path": [
+						"health"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

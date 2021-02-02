@@ -10,33 +10,31 @@ repositories {
     maven { url "https://jitpack.io" }
 }
 
-def quarkusVersion = "1.11.0.Final"
-
 dependencies {
     //Standard java lib
     implementation 'org.jetbrains.kotlin:kotlin-stdlib-jdk8'
 
     //Quarkus core
     implementation enforcedPlatform("${quarkusPlatformGroupId}:${quarkusPlatformArtifactId}:${quarkusPlatformVersion}")
-    implementation 'io.quarkus:quarkus-kotlin:${quarkusVersion}'
-    implementation 'io.quarkus:quarkus-arc:${quarkusVersion}'
+    implementation 'io.quarkus:quarkus-kotlin:${quarkusPluginVersion}'
+    implementation 'io.quarkus:quarkus-arc:${quarkusPluginVersion}'
 
     //Quarkus JPA
-    implementation 'io.quarkus:quarkus-hibernate-orm-panache-kotlin:${quarkusVersion}'
-    implementation 'io.quarkus:quarkus-jdbc-h2:${quarkusVersion}'
-    implementation 'io.quarkus:quarkus-hibernate-validator:${quarkusVersion}'
-    implementation 'io.quarkus:quarkus-narayana-jta:${quarkusVersion}'
+    implementation 'io.quarkus:quarkus-hibernate-orm-panache-kotlin:${quarkusPluginVersion}'
+    implementation 'io.quarkus:quarkus-jdbc-postgresql:${quarkusPluginVersion}'
+    implementation 'io.quarkus:quarkus-hibernate-validator:${quarkusPluginVersion}'
+    implementation 'io.quarkus:quarkus-narayana-jta:${quarkusPluginVersion}'
 
     //REST
-    implementation 'io.quarkus:quarkus-resteasy-jackson:${quarkusVersion}'
+    implementation 'io.quarkus:quarkus-resteasy-jackson:${quarkusPluginVersion}'
 
     //Open API Spec
-    implementation 'io.quarkus:quarkus-smallrye-openapi:${quarkusVersion}'
-    implementation 'io.quarkus:quarkus-smallrye-health:${quarkusVersion}'
+    implementation 'io.quarkus:quarkus-smallrye-openapi:${quarkusPluginVersion}'
+    implementation 'io.quarkus:quarkus-smallrye-health:${quarkusPluginVersion}'
 
     //Test frameworks
-    testImplementation 'io.quarkus:quarkus-junit5-mockito:${quarkusVersion}'
-    testImplementation 'io.quarkus:quarkus-junit5:${quarkusVersion}'
+    testImplementation 'io.quarkus:quarkus-junit5-mockito:${quarkusPluginVersion}'
+    testImplementation 'io.quarkus:quarkus-junit5:${quarkusPluginVersion}'
     testImplementation 'io.rest-assured:rest-assured:4.3.3'
 
 }
