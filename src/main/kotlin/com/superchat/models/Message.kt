@@ -16,7 +16,7 @@ data class Message(
             return messageEntityList.map { Message of it }.map { it.message }
         }
 
-        infix fun of (messageEntity: MessageEntity): Message {
+        private infix fun of (messageEntity: MessageEntity): Message {
             return Message(
                 date = messageEntity.date,
                 name = messageEntity.contactEntity.name,
