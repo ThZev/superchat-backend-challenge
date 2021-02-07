@@ -1,10 +1,10 @@
 package com.superchat.services
 
-import com.superchat.util.ObjectMapperUtil
+import com.superchat.util.ObjectMappingUtil
 import com.superchat.entities.ContactEntity
 import com.superchat.models.Contact
 import com.superchat.models.Message
-import com.superchat.util.MessagingUtil.sendHttpResponse
+import com.superchat.util.ResponseUtil.buildHttpResponse
 import javax.enterprise.context.ApplicationScoped
 import javax.transaction.Transactional
 import javax.ws.rs.core.Response
@@ -15,19 +15,19 @@ class ContactService {
     @Transactional
     fun createContact(contactEntity: ContactEntity): Response {
         ContactEntity.saveContact(contactEntity)
-        val responseJsonPair = ObjectMapperUtil.toJsonPair("created", "${contactEntity.id}")
-        return sendHttpResponse(Response.Status.CREATED, responseJsonPair)
+        val responseJsonPair = ObjectMappingUtil.toJsonPair("created", "${contactEntity.id}")
+        return buildHttpResponse(Response.Status.CREATED, responseJsonPair)
     }
 
     fun listContacts(): Response {
         val contactEntityList = ContactEntity.getContactEntities()
 
         if (contactEntityList.isNullOrEmpty()) {
-            return sendHttpResponse(Response.Status.NO_CONTENT, "")
+            return buildHttpResponse(Response.Status.NO_CONTENT, "")
         }
         contactEntityList.let {
             val contactList = Contact.getContactList(contactEntityList)
-            return sendHttpResponse(Response.Status.OK, contactList)
+            return buildHttpResponse(Response.Status.OK, contactList)
         }
     }
 
@@ -35,11 +35,11 @@ class ContactService {
         val messageEntityList = ContactEntity.getMessageEntities(contactId)
 
         if (messageEntityList.isNullOrEmpty()) {
-             return sendHttpResponse(Response.Status.NO_CONTENT, "")
+             return buildHttpResponse(Response.Status.NO_CONTENT, "")
         }
         messageEntityList.let {
             val messageList = Message.getMessageList(messageEntityList)
-            return sendHttpResponse(Response.Status.OK, messageList)
+            return buildHttpResponse(Response.Status.OK, messageList)
         }
     }
 }

@@ -1,9 +1,12 @@
 package com.superchat
 
+import com.superchat.entities.ContactEntity
 import com.superchat.entities.MessageEntity
 import com.superchat.resources.MessagingResource
 import com.superchat.services.ContactService
 import com.superchat.services.MessageService
+import io.quarkus.hibernate.orm.panache.kotlin.PanacheCompanion
+import io.quarkus.hibernate.orm.panache.kotlin.PanacheQuery
 import io.quarkus.test.common.QuarkusTestResource
 import io.quarkus.test.junit.QuarkusTest
 import io.restassured.RestAssured.given
@@ -13,6 +16,14 @@ import org.hamcrest.CoreMatchers.*
 import org.junit.jupiter.api.Order
 import io.restassured.http.ContentType
 import org.junit.jupiter.api.Disabled
+import io.quarkus.test.junit.QuarkusMock
+
+import org.mockito.Mockito
+
+import org.junit.jupiter.api.BeforeAll
+
+
+
 
 @QuarkusTest
 @TestHTTPEndpoint(MessagingResource::class)

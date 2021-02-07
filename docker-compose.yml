@@ -7,7 +7,6 @@ services:
       dockerfile: src/main/docker/Dockerfile.native
     container_name: superchat
     environment:
-      - QUARKUS_DB_KIND=postgresql
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
       - QUARKUS_DATASOURCE_URL=jdbc:postgresql://superchatdb:5432/contacts

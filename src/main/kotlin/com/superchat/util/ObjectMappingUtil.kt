@@ -6,7 +6,7 @@ import com.fasterxml.jackson.databind.node.ObjectNode
 import javax.inject.Inject
 import javax.inject.Singleton
 
-object ObjectMapperUtil {
+object ObjectMappingUtil {
 
     val objectMapper = ObjectMapper()
 

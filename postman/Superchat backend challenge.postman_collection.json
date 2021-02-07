@@ -159,7 +159,7 @@
 					"raw": " {\n            \"update_id\": 905647244,\n            \"message\": {\n                \"message_id\": 2,\n                \"from\": {\n                    \"id\": 611492282,\n                    \"is_bot\": false,\n                    \"first_name\": \"Thiemo\",\n                    \"language_code\": \"de\"\n                },\n                \"chat\": {\n                    \"id\": 611492282,\n                    \"first_name\": \"Thiemo\",\n                    \"type\": \"private\"\n                },\n                \"date\": 1611530260,\n                \"text\": \"This is a Telegram message\"\n            }\n        }"
 				},
 				"url": {
-					"raw": "http://0.0.0.0:8080/:8080/messaging/1585271717:AAGISwSBVhhzlZ95_xV3T3I9coJ9h2gDLNQ",
+					"raw": "http://0.0.0.0:8080/messaging/1585271717:AAGISwSBVhhzlZ95_xV3T3I9coJ9h2gDLNQ",
 					"protocol": "http",
 					"host": [
 						"0",
@@ -169,15 +169,8 @@
 					],
 					"port": "8080",
 					"path": [
-						":8080",
 						"messaging",
 						"1585271717:AAGISwSBVhhzlZ95_xV3T3I9coJ9h2gDLNQ"
-					],
-					"variable": [
-						{
-							"key": "8080",
-							"value": ""
-						}
 					]
 				}
 			},
@@ -199,7 +192,7 @@
 					"raw": " {\n            \"update_id\": 905647244,\n            \"message\": {\n                \"message_id\": 2,\n                \"from\": {\n                    \"id\": 611492282,\n                    \"is_bot\": false,\n                    \"first_name\": \"Thiemo\",\n                    \"language_code\": \"de\"\n                },\n                \"chat\": {\n                    \"id\": 611492282,\n                    \"first_name\": \"Thiemo\",\n                    \"type\": \"private\"\n                },\n                \"date\": 1611530260,\n                \"text\": \"This is a Telegram message\"\n            }\n        }"
 				},
 				"url": {
-					"raw": "http://0.0.0.0:8080/:8080/messaging/1585271717:AAGISwSBVhhzlZ95_xV3T3I9coJ9h2gDLNQ",
+					"raw": "http://0.0.0.0:8080/messaging/1585271717:AAGISwSBVhhzlZ95_xV3T3I9coJ9h2gDLNQ",
 					"protocol": "http",
 					"host": [
 						"0",
@@ -209,15 +202,8 @@
 					],
 					"port": "8080",
 					"path": [
-						":8080",
 						"messaging",
 						"1585271717:AAGISwSBVhhzlZ95_xV3T3I9coJ9h2gDLNQ"
-					],
-					"variable": [
-						{
-							"key": "8080",
-							"value": ""
-						}
 					]
 				}
 			},

@@ -2,9 +2,9 @@ package com.superchat.util
 
 import javax.ws.rs.core.Response
 
-object MessagingUtil {
+object ResponseUtil {
 
-    fun sendHttpResponse(status: Response.Status, entity: Any): Response{
+    fun buildHttpResponse(status: Response.Status, entity: Any): Response{
         return Response.status(status)
             .entity(entity)
             .build()

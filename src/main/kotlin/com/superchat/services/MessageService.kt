@@ -3,10 +3,10 @@ package com.superchat.services
 import com.fasterxml.jackson.databind.JsonNode
 import com.superchat.config.HttpConfig
 import com.superchat.config.TelegramConfig
-import com.superchat.util.ObjectMapperUtil
+import com.superchat.util.ObjectMappingUtil
 import com.superchat.entities.ContactEntity
 import com.superchat.entities.MessageEntity
-import com.superchat.util.MessagingUtil.sendHttpResponse
+import com.superchat.util.ResponseUtil.buildHttpResponse
 import javax.enterprise.context.ApplicationScoped
 import javax.inject.Inject
 import javax.transaction.Transactional
@@ -26,16 +26,24 @@ class MessageService {
         val contactEntity = ContactEntity.getContactById(contactId)
 
         contactEntity?.let {
-            messsageEntity.message = replacePlaceholders(contactEntity.name, messsageEntity.message)
+            messsageEntity.message = substitutePlaceholders(contactEntity.name, messsageEntity.message)
             messsageEntity.contactEntity = contactEntity
             MessageEntity.saveMessage(messsageEntity)
 
-            return sendHttpResponse(Response.Status.CREATED,"${messsageEntity.message}")
+            return buildHttpResponse(Response.Status.CREATED,"${messsageEntity.message}")
         }
-        return sendHttpResponse(Response.Status.NOT_FOUND,"")
+        return buildHttpResponse(Response.Status.NOT_FOUND,"")
     }
 
-    fun replacePlaceholders(contactName: String, message: String): String {
+    @Transactional
+    fun createMessageFromTelegramUpdate(telegramUpdate: String): Response{
+        val telegramContactId = telegramConfig.telegramContactId.toLong()
+        val messageEntity = MessageEntity()
+        messageEntity.message = getTextFromTelegramUpdate(telegramUpdate)
+        return createMessage(telegramContactId, messageEntity)
+    }
+
+    fun substitutePlaceholders(contactName: String, message: String): String {
         var substitutedMessage = message
         if (placeholderPresent(BITCOIN_PLACEHOLDER, message)) {
             substitutedMessage = replaceBitcoinPlaceholder(httpconfig.bitcoinUrl, substitutedMessage)
@@ -62,12 +70,6 @@ class MessageService {
             .replace("$BITCOIN_PLACEHOLDER", currentBitcoinRate, ignoreCase = true)
     }
 
-    fun getCurrentBitcoinRate(bitcoinUrl: String): String {
-        val bitoinData = httpconfig.sendGetRequest(bitcoinUrl)
-        val jsonNode = ObjectMapperUtil.toJsonNode(bitoinData)
-        return jsonNode["bpi"]["EUR"]["rate"].asText()
-    }
-
     fun replaceContactPlacholder(contactName: String, message: String): String {
         return message
             .replace(CONTACT_PLACEHOLDER, contactName, ignoreCase = true)
@@ -79,15 +81,14 @@ class MessageService {
             .replace(MEMBER_NUMBER, memberNumber, ignoreCase = true)
     }
 
-    fun createMessageFromTelegramUpdate(telegramUpdate: String): Response{
-        val telegramContactId = telegramConfig.telegramContactId.toLong()
-        val messageEntity = MessageEntity()
-        messageEntity.message = getTextFromTelegramUpdate(telegramUpdate)
-        return createMessage(telegramContactId, messageEntity)
+    fun getCurrentBitcoinRate(bitcoinUrl: String): String {
+        val bitoinData = httpconfig.sendGetRequest(bitcoinUrl)
+        val jsonNode = ObjectMappingUtil.toJsonNode(bitoinData)
+        return jsonNode["bpi"]["EUR"]["rate"].asText()
     }
 
     fun getTextFromTelegramUpdate(telegramUpdate: String): String{
-        val rootNode: JsonNode = ObjectMapperUtil.objectMapper.readTree(telegramUpdate)
+        val rootNode: JsonNode = ObjectMappingUtil.objectMapper.readTree(telegramUpdate)
         return rootNode["message"]["text"].asText()
     }
 

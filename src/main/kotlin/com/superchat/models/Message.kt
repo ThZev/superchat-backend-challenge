@@ -11,7 +11,6 @@ data class Message(
     val message: String
 ) {
     companion object {
-
         fun getMessageList(messageEntityList: List<MessageEntity>): List<String> {
             return messageEntityList.map { Message of it }.map { it.message }
         }

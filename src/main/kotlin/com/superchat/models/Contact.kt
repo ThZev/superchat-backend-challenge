@@ -11,7 +11,6 @@ data class Contact(
     val phone: String
 ) {
     companion object {
-
         fun getContactList(contactEntityList: List<ContactEntity>): List<Contact> {
             return contactEntityList.map { Contact of it }
         }

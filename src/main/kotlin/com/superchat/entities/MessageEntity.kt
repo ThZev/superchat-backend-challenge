@@ -8,7 +8,6 @@ import java.time.LocalDateTime
 import javax.persistence.Entity
 import javax.persistence.FetchType
 import javax.persistence.ManyToOne
-import javax.validation.constraints.NotBlank
 
 @Entity
 class MessageEntity : PanacheEntity() {

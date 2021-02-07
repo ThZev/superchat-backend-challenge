@@ -5,10 +5,10 @@ import java.net.URI
 import java.net.http.HttpClient
 import java.net.http.HttpRequest
 import java.net.http.HttpResponse
+import javax.enterprise.context.ApplicationScoped
 import javax.inject.Inject
-import javax.inject.Singleton
 
-@Singleton
+@ApplicationScoped
 class HttpConfig {
 
     private val httpClient: HttpClient = HttpClient.newHttpClient()
